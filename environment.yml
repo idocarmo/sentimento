@@ -1,0 +1,13 @@
+name: sentimento
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - matplotlib
+  - datasets
+  - ipykernel
+  - tensorflow
+  - scikit-learn
+prefix: /opt/conda/envs/sentimento
