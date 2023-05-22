@@ -10,8 +10,6 @@ dependencies:
   - ipykernel
   - tensorflow
   - scikit-learn
-  - nltk
-  - spacy
   - unidecode
   - scikit-plot
 prefix: /opt/conda/envs/sentimento
