@@ -54,12 +54,14 @@ def main():
     data_pipeline = DataPipeline()
     train_dataset, validation_dataset, test_dataset = data_pipeline.load_data()
 
+    train_data, train_labels = data_pipeline.split_data_target(train_dataset)
+    validation_data, validation_labels = data_pipeline.split_data_target(validation_dataset)
+
     logging.info('\n\tVectorizing training data...\n')
-    train_data, train_labels = data_pipeline.fit_transform(train_dataset)
+    X_train = data_pipeline.fit_transform(train_data)
     
-    logging.info('\n\tVectorizing validation and test data...\n')
-    validation_data, validation_labels = data_pipeline.transform(validation_dataset)
-    test_data, test_labels = data_pipeline.transform(test_dataset)
+    logging.info('\n\tVectorizing validation data...\n')
+    X_val = data_pipeline.transform(validation_data)
     logging.info('Done.')
 
     logging.info('\nCreating embedding model...\n')
@@ -69,11 +71,11 @@ def main():
     logging.info('\nTraining model...\n')
     callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0.01, patience=1)
     history = model.fit(
-        train_data,
-        np.array(train_labels),
+        X_train,
+        train_labels,
         epochs=EPOCHS,
         batch_size=100,
-        validation_data=(validation_data, validation_labels),
+        validation_data=(X_val, validation_labels),
         callbacks=[callback],
         verbose=1
     )
