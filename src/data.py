@@ -1,8 +1,7 @@
 import re
 import numpy as np
 import string
-from collections.abc import Iterable
-from typing import List
+from typing import Iterable
 
 from unidecode import unidecode
 
@@ -37,7 +36,7 @@ class DataPipeline:
         """
         self.vectorizer_layer = layers.TextVectorization(
             max_tokens=VOCAB_SIZE,
-            standardize=self.compose_corpus_tensor,
+            standardize=self.standardize_text,
             split='whitespace',
             ngrams=None,
             output_mode='int',
@@ -46,24 +45,17 @@ class DataPipeline:
             encoding='utf-8',
         )
 
-    def fit_transform(self, dataset: datasets.arrow_dataset.Dataset):
-        ds = dataset.map(self.decode_text, batch_size=BATCH_SIZE)
-        corpus_tensor = self.compose_corpus_tensor(ds['text'])
+    def fit_transform(self, corpus: Iterable[str]):
+        corpus_tensor = self.compose_corpus_tensor(corpus)
         self.vectorizer_layer.adapt(corpus_tensor, batch_size=BATCH_SIZE)
-        return self.vectorizer_layer(ds['text']), np.array(ds['label'])
+        return self.vectorizer_layer(corpus_tensor)
 
-    def transform(self, dataset: datasets.arrow_dataset.Dataset):
-        ds = dataset.map(self.decode_text, batch_size=BATCH_SIZE)
-        corpus = ds['text']
-        return self.vectorizer_layer(corpus), np.array(ds['label'])
-
+    def transform(self, corpus: Iterable[str]):
+        corpus_tensor = self.compose_corpus_tensor(corpus)
+        return self.vectorizer_layer(corpus_tensor)
+    
     @staticmethod
-    def decode_text(dataset_row):
-        dataset_row['text'] = unidecode(dataset_row['text'])
-        return dataset_row
-
-    @staticmethod
-    def standardize_text(input_data):
+    def standardize_text(input_data: Iterable[str]) -> tf.Tensor:
         lowercase = tf.strings.lower(input_data)
         standardized = tf.strings.regex_replace(
             lowercase, 
@@ -73,9 +65,13 @@ class DataPipeline:
         return standardized
 
     @staticmethod
-    def compose_corpus_tensor(corpus):
+    def compose_corpus_tensor(corpus: Iterable[str]) -> tf.Tensor:
         corpus_tensor = tf.expand_dims(corpus, -1)
         return corpus_tensor
+
+    @staticmethod
+    def split_data_target(dataset: datasets.arrow_dataset.Dataset):
+        return np.array(dataset['text']), np.array(dataset['label'])
 
     @staticmethod
     def load_data() -> tuple:
