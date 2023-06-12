@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 
-
-
 def plot_metric(history_dict: dict, metric: str='binary_accuracy', title: str='') -> None:
     ''' Plot the metrics results for Neural Network epochs
 
