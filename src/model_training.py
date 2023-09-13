@@ -16,8 +16,8 @@ from evaluation import plot_metric
 # Logging configuring
 logging.basicConfig(
     level=logging.INFO,
-    filename='../model/model_training_results.log',
-    format = '%(message)s'
+    filename='model/results.log',
+    format = '%(asctime)s %(name)s: %(levelname)s %(message)s'
     )
 logging.info('\nLoading Variables...')
 
@@ -137,12 +137,12 @@ def main():
     validation_results = final_model.evaluate(*data_pipeline.split_data_target(validation_dataset), verbose=0)
     test_results = final_model.evaluate(*data_pipeline.split_data_target(test_dataset), verbose=0)
     
-    logging.info('  Training Results - loss: {0:2f} \t accuracy: {1:2f}'.format(*training_results))
+    logging.info('  Training Results   - loss: {0:2f} \t accuracy: {1:2f}'.format(*training_results))
     logging.info('  Validation Results - loss: {0:2f} \t accuracy: {1:2f}'.format(*validation_results))
-    logging.info('  Test Results - loss: {0:2f} \t accuracy: {1:2f}'.format(*test_results))
+    logging.info('  Test Results       - loss: {0:2f} \t accuracy: {1:2f}'.format(*test_results))
 
     logging.info('\nSaving the model...\n')
-    final_model.save('../model/trained_model.keras')
+    final_model.save('model/trained_model')
 
     logging.info('Model saved.')
     logging.info('All done.')

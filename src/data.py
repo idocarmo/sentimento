@@ -16,14 +16,8 @@ BATCH_SIZE = 32
 class DataPipeline:
     """Class for loading and processing imdb reviews data.
 
-    Longer class information...
-    Longer class information...
-
     Attributes:
         vectorizer_layer: tensor representation of corpus documents
-
-    Methods:
-
     """
     def __init__(self) -> None:
         """Initializes the DataPipeline instance.
