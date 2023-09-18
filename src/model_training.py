@@ -37,7 +37,7 @@ def create_model():
         a keras Neural Network model. 
     '''
     model = keras.Sequential([
-      layers.Embedding(VOCAB_SIZE + 1, EMBEDDING_DIM, input_length=512),
+      layers.Embedding(VOCAB_SIZE + 1, EMBEDDING_DIM, input_length=256),
       layers.Flatten(),
       layers.Dropout(rate=0.5),
       layers.Dense(5),
