@@ -27,3 +27,27 @@ def plot_metric(history_dict: dict, metric: str='binary_accuracy', title: str=''
     ax.set_xticks(epochs)
     plt.legend(loc='best')
     plt.savefig('report/' + metric + '_epoch_plot.svg')
+
+
+def generate_results_str(results_list: list) -> str:
+    """"Generates restults
+
+    Generates model evaluation string from a input list
+    with the loss, accuracy, precision, recall and AUC
+    values respectively.
+
+    Args:
+        results_list: list with the model metrics values.
+
+    Returns:
+        string with the metrics names and values.
+    """
+    results_str = """
+        loss: {0:2f} \t 
+        accuracy: {1:2f} \t
+        precision: {2:2f} \t
+        recall: {3:2f} \t
+        AUC: {4:2f}
+    """.format(*results_list)
+
+    return results_str
