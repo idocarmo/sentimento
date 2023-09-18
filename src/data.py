@@ -126,6 +126,6 @@ class DataPipeline:
             tuple of train, validadtion and test datasets.
         '''
         raw_train_dataset, test_dataset = load_dataset('maritaca-ai/imdb_pt', split=['train', 'test'])
-        raw_train_dataset = raw_train_dataset.train_test_split(0.2)
+        raw_train_dataset = raw_train_dataset.train_test_split(0.2, seed=0)
 
         return raw_train_dataset['train'], raw_train_dataset['test'], test_dataset
