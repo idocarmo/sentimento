@@ -10,7 +10,7 @@ import tensorflow as tf
 from tensorflow.keras import layers
 
 VOCAB_SIZE = 10000
-MAX_TOKENS = 256
+MAX_TOKENS = 512
 BATCH_SIZE = 32
 
 class DataPipeline:

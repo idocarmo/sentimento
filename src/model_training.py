@@ -11,7 +11,7 @@ from tensorflow.keras import losses
 from data import VOCAB_SIZE
 from data import DataPipeline
 
-from evaluation import plot_metric
+from evaluation import plot_metric, generate_results_str
 
 # Logging configuring
 logging.basicConfig(
@@ -37,7 +37,7 @@ def create_model():
         a keras Neural Network model. 
     '''
     model = keras.Sequential([
-      layers.Embedding(VOCAB_SIZE + 1, EMBEDDING_DIM, input_length=256),
+      layers.Embedding(VOCAB_SIZE + 1, EMBEDDING_DIM, input_length=512),
       layers.Flatten(),
       layers.Dropout(rate=0.5),
       layers.Dense(5),
@@ -75,7 +75,14 @@ def compile_final_model(trained_model, data_pipeline):
     ])
 
     final_model.compile(
-        loss=losses.BinaryCrossentropy(from_logits=False), optimizer="adam", metrics=['accuracy']
+        loss=losses.BinaryCrossentropy(from_logits=False), 
+        optimizer="adam", 
+        metrics=[
+            'accuracy', 
+            tf.metrics.Precision(), 
+            tf.metrics.Recall(), 
+            tf.metrics.AUC()
+        ]
     )
 
     return final_model
@@ -84,7 +91,7 @@ def compile_final_model(trained_model, data_pipeline):
 def main():
     '''Model training and evaluation script.
         
-    Main function for the data processing and model training pipeline
+    Main function for the data processing and model training pipeline.
 
     Args:
         None
@@ -126,6 +133,7 @@ def main():
     history_dict = history.history
     plot_metric(history_dict, metric='binary_accuracy', title='Binary Accuracy')
     plot_metric(history_dict, metric='precision', title='Precision')
+    plot_metric(history_dict, metric='recall', title='Recall')
     plot_metric(history_dict, metric='loss', title='Loss')
 
 
@@ -137,9 +145,9 @@ def main():
     validation_results = final_model.evaluate(*data_pipeline.split_data_target(validation_dataset), verbose=0)
     test_results = final_model.evaluate(*data_pipeline.split_data_target(test_dataset), verbose=0)
     
-    logging.info('  Training Results   - loss: {0:2f} \t accuracy: {1:2f}'.format(*training_results))
-    logging.info('  Validation Results - loss: {0:2f} \t accuracy: {1:2f}'.format(*validation_results))
-    logging.info('  Test Results       - loss: {0:2f} \t accuracy: {1:2f}'.format(*test_results))
+    logging.info('  Training Results' + generate_results_str(training_results))
+    logging.info('  Validation Results' + generate_results_str(validation_results))
+    logging.info('  Test Results' + generate_results_str(test_results))
 
     logging.info('\nSaving the model...\n')
     final_model.save('model/trained_model')
