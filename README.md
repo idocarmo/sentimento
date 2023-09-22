@@ -34,15 +34,15 @@ You can prepare the pyhton environment  with all the dependencies using ``conda`
 Alternatively you can use your local python 3 instalation and run
 
     pip install -r requirements.txt
-
+https://github.com/idocarmo/sentimento/tree/feature/readme/data
 ## Repository Content
 
-- 📂 [data](https://github.com/idocarmo/response-pipeline/tree/main/app) nothing there but I like to have it in my repos 😳;
-- 📂 [model](https://github.com/idocarmo/response-pipeline/tree/main/app) contains training logs;
-- 📂 [notebooks](https://github.com/idocarmo/response-pipeline/tree/main/data) contains notebooks used in the development;
+- 📂 [data](https://github.com/idocarmo/sentimento/tree/feature/readme/data) nothing there but I like to have it in my repos 😳;
+- 📂 [model](https://github.com/idocarmo/sentimento/tree/feature/readme/model) contains training logs;
+- 📂 [notebooks](https://github.com/idocarmo/sentimento/tree/feature/readme/notebooks) contains notebooks used in the development;
     - 📄 1.0-icc-eda.ipynb is the jupyter notebook with the exploratory data analysis.
-- 📂 [reports](https://github.com/idocarmo/response-pipeline/tree/main/model) contains the results reports of the model;
-- 📂 [src](https://github.com/idocarmo/response-pipeline/tree/main/model) contains source code files used to buil the model;
+- 📂 [reports](https://github.com/idocarmo/sentimento/tree/feature/readme/reports) contains the results reports of the model;
+- 📂 [src](https://github.com/idocarmo/sentimento/tree/feature/readme/src) contains source code files used to buil the model;
     - 📄 data.py is the script used for data processing.
     - 📄 evaluation.py is the script with some useful functions for consolidating the model results.
     - 📄 model_training.py is the script where we build and train our sentiment classification model.
