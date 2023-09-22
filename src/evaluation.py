@@ -26,7 +26,7 @@ def plot_metric(history_dict: dict, metric: str='binary_accuracy', title: str=''
     ax.set_xlabel('epoch')
     ax.set_xticks(epochs)
     plt.legend(loc='best')
-    plt.savefig('report/' + metric + '_epoch_plot.svg')
+    plt.savefig('report/' + metric + '_epoch_plot.png')
 
 
 def generate_results_str(results_list: list) -> str:
