@@ -6,10 +6,8 @@ dependencies:
   - numpy
   - pandas
   - matplotlib
+  - seaborn
   - datasets
   - ipykernel
   - tensorflow
-  - scikit-learn
-  - unidecode
-  - scikit-plot
 prefix: /opt/conda/envs/sentimento
