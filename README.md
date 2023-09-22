@@ -4,7 +4,7 @@
 
 In this project we implemented a binary sentiment classifier (positive or negative) from Portuguese imdb reviews dataset [1] using a bidemensional embedding layer.
 
-For further model discussion please check the medium article [Text Classification with Embeddings]()
+For further model discussion please check the medium article [Text Classification with Embeddings](https://medium.com/@ivens10/text-classification-with-embeddings-4445104acfcf)
 
 
 ## Source code
