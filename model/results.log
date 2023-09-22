@@ -1,0 +1,56 @@
+2023-09-21 21:13:13,290 root: INFO 
+Loading Variables...
+2023-09-21 21:13:13,290 root: INFO 
+Loadind datasets...
+
+2023-09-21 21:13:15,451 datasets.builder: WARNING Found cached dataset imdb_pt (/Users/idocarmo/.cache/huggingface/datasets/maritaca-ai___imdb_pt/plain_text/1.0.0/ffeeea85dfdf69a15638f37cdae931de451276b0fbc70c92f7cad159b96abb05)
+2023-09-21 21:13:15,478 datasets.arrow_dataset: WARNING Loading cached split indices for dataset at /Users/idocarmo/.cache/huggingface/datasets/maritaca-ai___imdb_pt/plain_text/1.0.0/ffeeea85dfdf69a15638f37cdae931de451276b0fbc70c92f7cad159b96abb05/cache-b0a5c7dba16e123e.arrow and /Users/idocarmo/.cache/huggingface/datasets/maritaca-ai___imdb_pt/plain_text/1.0.0/ffeeea85dfdf69a15638f37cdae931de451276b0fbc70c92f7cad159b96abb05/cache-a02b26a26fb632e1.arrow
+2023-09-21 21:13:16,060 root: INFO 
+	Vectorizing training data...
+
+2023-09-21 21:13:17,851 root: INFO 
+	Vectorizing validation data...
+
+2023-09-21 21:13:18,030 root: INFO Done.
+2023-09-21 21:13:18,030 root: INFO 
+Creating embedding model...
+
+2023-09-21 21:13:18,055 root: INFO 
+Training model...
+
+2023-09-21 21:13:20,426 root: INFO 
+Ploting training metrics...
+
+2023-09-21 21:13:20,910 root: INFO 
+Compiling final model...
+
+2023-09-21 21:13:20,928 root: INFO 
+Model metrics...
+
+2023-09-21 21:13:22,933 root: INFO   Training Results
+        loss: 0.177626 	 
+        accuracy: 0.942700 	
+        precision: 0.949655 	
+        recall: 0.935039 	
+        AUC: 0.985689
+    
+2023-09-21 21:13:22,933 root: INFO   Validation Results
+        loss: 0.313860 	 
+        accuracy: 0.872600 	
+        precision: 0.878208 	
+        recall: 0.864475 	
+        AUC: 0.940884
+    
+2023-09-21 21:13:22,933 root: INFO   Test Results
+        loss: 0.327882 	 
+        accuracy: 0.858600 	
+        precision: 0.884929 	
+        recall: 0.824400 	
+        AUC: 0.937102
+    
+2023-09-21 21:13:22,933 root: INFO 
+Saving the model...
+
+2023-09-21 21:13:23,554 tensorflow: INFO Assets written to: model/trained_model/assets
+2023-09-21 21:13:23,595 root: INFO Model saved.
+2023-09-21 21:13:23,595 root: INFO All done.
